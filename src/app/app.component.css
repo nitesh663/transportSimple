@@ -1,11 +1,3 @@
-/* // .circle {
-//   background-color: #595fab;
-//   width: 10px;
-//   height: 10px;
-//   border-radius: 50%;
-//   margin-left: 28%;
-// } */
-
 .addBtn {
   margin-top: 30px;
 }
@@ -18,9 +10,7 @@
 }
 
 .trip-cotainer {
-  /* display: flex; */
   min-width: 200px;
-  /* padding-top: 80px; */
 }
 
 .col-2 {
