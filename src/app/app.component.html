@@ -1,0 +1,120 @@
+<div class="container">
+  <form [formGroup]="addRoutesForm" autocomplete="off">
+    <div class="form-row">
+      <div class="form-group col-md-4">
+        <label for="inputCity">Start Point:</label>
+        <input type="text" class="form-control" id="startPoint" placeholder="Enter Start Point"
+          formControlName="startPoint">
+      </div>
+      <div class="form-group col-md-4">
+        <label for="inputState">End Point:</label>
+        <input type="text" class="form-control" id="endPoint" placeholder="Enter End Point" formControlName="endPoint">
+      </div>
+      <div class="form-group col-md-2">
+
+        <button type="submit" class="form-control btn btn-primary addBtn" (click)="onAddPickupPoints()"
+          [disabled]="addRoutesForm.invalid"
+          [ngStyle]="{'cursor': addRoutesForm.invalid? 'not-allowed':'pointer'}">ADD</button>
+      </div>
+    </div>
+  </form>
+  <!-- <div class="row">
+    <div *ngFor="let r of addedRoutesArr">
+      <div class="col">
+        <div class="circle"></div>
+        <div class="st-line"></div>
+        <div class=""><img src="assets/images/blue.png" /></div>
+        {{r.startPoint}} - {{r.endPoint}}
+
+      </div>
+      <div class="col">
+        <div class=""><img src="assets/images/blue.png" /></div>
+        {{r.startPoint}} - {{r.endPoint}}
+      </div>
+    </div>
+
+  </div> -->
+
+  <div class="row routes-container">
+
+    <div class="trip-cotainer" *ngFor="let r of addedRoutesArr">
+      <div class="col-2" [ngClass]="{'align-self-end':r.type == 'straightline' || r.type == 'arrow' || r.type == 'connectorup' || consecutive_count == 0,
+        'align-self-start':r.type == 'levelup' || r.type == 'connectordown' }"
+        [ngStyle]="{'padding-top':r.type == 'straightline' || r.type == 'arrow' ? '80px':'0px' }">
+        <span *ngIf="r.type == 'levelup' || r.type == 'connectordown'"
+          [ngStyle]="{'color': r.type == 'levelup'?'#8ca6b9':'black'}">{{r.startPoint}} - {{r.endPoint}}</span>
+
+        <div class="wrapper" *ngIf="r.type == 'straightline'">
+          <div class="circle1"></div>
+          <div class="st-line"></div>
+        </div>
+
+        <div class="wrapper" *ngIf="r.type == 'arrow'">
+          <div class="circle2"></div>
+          <div class="line"></div>
+          <div class="point"></div>
+        </div>
+
+        <div class="wrapper" *ngIf="r.type == 'connectorup'">
+          <app-connector-up></app-connector-up>
+        </div>
+
+        <div class="wrapper" *ngIf="r.type == 'levelup'">
+          <div class="circle3"></div>
+          <div class="st-line2"></div>
+        </div>
+
+        <div class="wrapper" *ngIf="r.type == 'connectordown'">
+          <app-connector-down></app-connector-down>
+        </div>
+
+        <span *ngIf="r.type != 'levelup' && r.type != 'connectordown'"
+          [ngStyle]="{'color': r.type == 'straightline'?'#595fab':r.type == 'arrow'?'#0085E5':r.type == 'connectorup'?'#eaa84a':'black'}">{{r.startPoint}}
+          -
+          {{r.endPoint}}</span>
+      </div>
+    </div>
+
+    <!-- <div class="col-2 align-self-end">
+
+        <div class="wrapper">
+          <div class="circle1"></div>
+          <div class="st-line"></div>
+        </div>
+        <span>BLR - MAA</span>
+      </div>
+      <div class="col-2 align-self-end">
+        <div class="wrapper">
+          <div class="circle2"></div>
+          <div class="line"></div>
+          <div class="point"></div>
+        </div>
+
+        MAA - HYD
+      </div> -->
+
+
+    <!-- <div class="col-2 align-self-end">
+      <div class="wrapper">
+        <app-connector-up></app-connector-up>
+      </div>
+      BLR - HYD
+    </div> -->
+    <!-- <div class="col-2 align-self-start">
+      HYB - DEL
+      <div class="wrapper">
+        <div class="circle3"></div>
+        <div class="st-line2"></div>
+      </div>
+    </div> -->
+    <!-- <div class="col-2 align-self-start">
+      HYB - DEL
+      <div class="wrapper">
+        <app-connector-down></app-connector-down>
+      </div>
+    </div> -->
+    <!-- <div class="col-2 align-self-end">
+      DEL - BLR
+    </div> -->
+  </div>
+</div>
